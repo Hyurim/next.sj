@@ -1,7 +1,10 @@
 import { Form, Input, Button } from 'antd';
 import Link from 'next/link';
 import React, { useCallback, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+
+import { loginAction } from '../reducers';
 // useMemo, useCallback
 const ButtonDiv = styled.div`
 margin-top: 10px;
@@ -10,7 +13,8 @@ margin-top: 10px;
 const FormLogin = styled(Form)`
 padding: 10px;
 `
-const LoginForm = ({ setIsLoggedIn }) => {
+const LoginForm = () => {
+    const dispatch = useDispatch();
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
 
@@ -22,7 +26,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
     }, []);
     const onSubmitForm = useCallback(() => {
         console.log(id, password);
-        setIsLoggedIn(true);
+        dispatch(loginAction({ id, password}));
     }, [id, password]);
     // antd 디자인에서 onFinish 에는 이미 e.preventDefault()가 적용이 되어 있다.
     return (
