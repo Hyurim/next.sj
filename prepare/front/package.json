@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
+    "dev": "next", 
     "bulid": "next build"
   },
   "author": "",
@@ -28,3 +28,4 @@
     "eslint-plugin-react-hooks": "^4.4.0"
   }
 }
+

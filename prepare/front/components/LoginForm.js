@@ -4,7 +4,7 @@ import React, { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
-import { loginAction } from '../reducers';
+import { loginAction } from '../reducers/user';
 // useMemo, useCallback
 const ButtonDiv = styled.div`
 margin-top: 10px;

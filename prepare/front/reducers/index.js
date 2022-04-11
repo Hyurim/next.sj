@@ -1,60 +1,22 @@
-const initialState = {
-    user: {
-        isLoggedIn:false,
-        user:null,
-        signUpData: {},
-        loginData: {},
-    },
-    post: {
-        mainPosts: [],
+import { HYDRATE } from 'next-redux-wrapper';
+import { combineReducers } from 'redux';
 
-    },
-}
-export const loginAction = (data) => {
-    return{
-        type: 'LOG_IN',
-        data,
-    }
-};
-export const logoutAction = () => {
-    return{
-        type: 'LOG_OUT',
-    }
-}
-// async action creator
-//action creator
-/* const changeNickname = (data) => {
-    return {
-        type: 'CHANGE_NICKNAME',
-        data,
-    }
-};
+import user from './user';
+import post from './post';
 
-changeNickname('홍길동1');
- */
 
 // (이전상태, 액션) => 다음상태
-const rootReducer = (state = initialState, action) => {
+const rootReducer = combineReducers ({
+    index: (state = {}, action) => {
     switch (action.type) {
-        case 'LOG_IN':
-            return {
-                ...state,
-                user : { 
-                    ...state.user,
-                    isLoggedIn: true,
-                    user: action.data,
-                    }
-                };
-         case 'LOG_OUT':
-            return {
-                ...state,
-                user : { 
-                ...state.user,
-                isLoggedIn: false,
-                user: null,
-                }
-            };
-    }
-};
+        case HYDRATE:
+            return{...state, ...action.payload};
+            default:
+                return state; //이게 없으면 return 값이 undefind가 되버림.
+            }
+        },
+        user,
+        post
+});
 
 export default rootReducer;
